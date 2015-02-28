@@ -8,7 +8,6 @@ Furthermore, this repo also provides a top-level Makefile which can be used to b
 in all their flavors, including running all the tests.
 
 ## Cloning
-Cloning
 This repository is using GIT submodules. With version 1.6.5 of Git and later, you can use:
 ```
 git clone --recursive git@github.com:lionello/d-meta.git
@@ -16,8 +15,6 @@ git clone --recursive git@github.com:lionello/d-meta.git
 For already cloned repos, or older Git versions, just use:
 ```
 git clone git@github.com:lionello/d-meta.git
-git -C dmd submodule update --init --recursive
-git -C druntime submodule update --init --recursive
-git -C phobos submodule update --init --recursive
-git -C dlang.org submodule update --init --recursive
+cd d-meta
+git submodule update --init --recursive
 ```
