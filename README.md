@@ -6,6 +6,10 @@ Not having a matching compiler and libraries makes testing impossible.
 
 Furthermore, this repo also provides a top-level Makefile which can be used to build all the libraries,
 in all their flavors, including running all the tests.
+```
+make test
+```
+Not tested on Windows.
 
 ## Tags
 Tags in this repo correspond to the respective tags in each submodule. So, to get a particular state of the D environment, simply do:
