@@ -1,0 +1,12 @@
+[submodule "dmd"]
+	path = dmd
+	url = git@github.com:lionello/dmd.git
+[submodule "phobos"]
+	path = phobos
+	url = git@github.com:lionello/phobos.git
+[submodule "druntime"]
+	path = druntime
+	url = git@github.com:lionello/druntime.git
+[submodule "dlang.org"]
+	path = dlang.org
+	url = git@github.com:lionello/dlang.org.git

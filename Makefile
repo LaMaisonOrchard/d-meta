@@ -1,0 +1,50 @@
+.PHONY: dmd phobos druntime test phobos32 phobos64 druntime32 druntime64 all clean fetch sync
+
+all: phobos
+
+sync:
+	git -C dmd pull --ff-only upstream master
+	git -C dlang.org pull --ff-only upstream master
+	git -C druntime pull --ff-only upstream master
+	git -C phobos pull --ff-only upstream master
+
+fetch:
+	git -C dmd fetch --all
+	git -C dlang.org fetch --all
+	git -C druntime fetch --all
+	git -C phobos fetch --all
+
+ddmd: ddmd32 ddmd64
+
+ddmd64: phobos64
+	$(MAKE) -C dmd/src -f posix.mak ddmd MODEL=64
+
+ddmd32: phobos32
+	$(MAKE) -C dmd/src -f posix.mak ddmd MODEL=32
+
+clean:
+	$(MAKE) -C dmd/src -f posix.mak clean
+
+dmd:
+	$(MAKE) -C dmd/src -f posix.mak
+
+druntime: druntime32 druntime64
+
+druntime32: dmd
+	$(MAKE) -C druntime -f posix.mak DMD=../dmd/src/dmd MODEL=32
+
+druntime64: dmd
+	$(MAKE) -C druntime -f posix.mak DMD=../dmd/src/dmd MODEL=64
+
+phobos:	phobos32 phobos64
+
+phobos32: druntime32
+	$(MAKE) -C phobos -f posix.mak DMD=../dmd/src/dmd MODEL=32 BUILD=debug
+	$(MAKE) -C phobos -f posix.mak DMD=../dmd/src/dmd MODEL=32
+
+phobos64: druntime64
+	$(MAKE) -C phobos -f posix.mak DMD=../dmd/src/dmd MODEL=64 BUILD=debug
+	$(MAKE) -C phobos -f posix.mak DMD=../dmd/src/dmd MODEL=64
+
+test: phobos
+	$(MAKE) -C dmd/test
