@@ -4,15 +4,19 @@
 
 all: phobos
 
-tag: checkout
-	git commit -am"Added $(REV)"
-	git tag -f "$(REV)"
+tag:
+	-git -C dmd tag "$(TAG)"
+	-git -C druntime tag "$(TAG)"
+	-git -C phobos tqg "$(TAG)"
+	-git -C dlang.org tag "$(TAG)"
+	git commit -m"Added $(TAG)" -- dmd druntime phobos dlang.org
+	git tag -f "$(TAG)"
 
 checkout:
 	git -C dmd checkout "$(REV)"
 	git -C druntime checkout "$(REV)"
 	git -C phobos checkout "$(REV)"
-	-git -C dlang.org checkout "$(REV)"
+	git -C dlang.org checkout "$(REV)"
 
 sync:
 	git -C dmd pull --ff-only upstream master
