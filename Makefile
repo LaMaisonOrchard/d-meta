@@ -1,6 +1,18 @@
-.PHONY: dmd phobos druntime test phobos32 phobos64 druntime32 druntime64 all clean fetch sync
+.PHONY: dmd phobos druntime test ddmd ddmd32 ddmd64 \
+	phobos32 phobos64 druntime32 druntime64 \
+	all clean fetch sync checkout tag
 
 all: phobos
+
+tag: checkout
+	git commit -am"Added $(REV)"
+	git tag "$(REV)"
+
+checkout:
+	git -C dmd checkout "$(REV)"
+	git -C dlang.org checkout "$(REV)"
+	git -C druntime checkout "$(REV)"
+	git -C phobos checkout "$(REV)"
 
 sync:
 	git -C dmd pull --ff-only upstream master
