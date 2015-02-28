@@ -11,7 +11,7 @@ in all their flavors, including running all the tests.
 Tags in this repo correspond to the respective tags in each submodule. So, to get a particular state of the D environment, simply do:
 ```
 git checkout v2.057
-git submodule update --init --recursive
+git submodule update
 ```
 
 ## Cloning
