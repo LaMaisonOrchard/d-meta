@@ -1,8 +1,11 @@
 .PHONY: dmd phobos druntime test ddmd ddmd32 ddmd64 \
 	phobos32 phobos64 druntime32 druntime64 \
-	all clean fetch sync checkout tag push autotag
+	all clean fetch sync checkout tag push autotag init
 
 all: phobos
+
+init:
+	git submodule update --init --recursive
 
 push:
 	git -C dmd push --set-upstream origin master
