@@ -1,6 +1,6 @@
 .PHONY: dmd phobos druntime test ddmd ddmd32 ddmd64 \
 	phobos32 phobos64 druntime32 druntime64 \
-	all clean fetch sync checkout tag push
+	all clean fetch sync checkout tag push autotag
 
 all: phobos
 
@@ -9,6 +9,8 @@ push:
 	git -C dlang.org push --set-upstream origin master
 	git -C druntime push --set-upstream origin master
 	git -C phobos push --set-upstream origin master
+	git push --set-upstream origin master
+	git push --tags
 
 tag:
 	-git -C dmd tag "$(TAG)"
@@ -23,6 +25,18 @@ checkout:
 	git -C druntime checkout "$(REV)"
 	git -C phobos checkout "$(REV)"
 	git -C dlang.org checkout "$(REV)"
+
+autotag:
+	-git -C dmd checkout "$(TAG)"
+	-git -C druntime checkout "$(TAG)"
+	-git -C phobos checkout "$(TAG)"
+	-git -C dlang.org checkout "$(TAG)"
+	-git -C dmd tag "$(TAG)"
+	-git -C druntime tag "$(TAG)"
+	-git -C phobos tag "$(TAG)"
+	-git -C dlang.org tag "$(TAG)"
+	git commit -m"Added $(TAG)" -- dmd druntime phobos dlang.org
+	git tag -f "$(TAG)"
 
 sync:
 	git -C dmd pull --ff-only upstream master
