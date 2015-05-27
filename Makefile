@@ -39,6 +39,8 @@ ddmd32: phobos32
 	$(MAKE) -C dmd/src -f posix.mak ddmd MODEL=32
 
 clean:
+	$(MAKE) -C druntime -f posix.mak clean
+	$(MAKE) -C phobos -f posix.mak clean
 	$(MAKE) -C dmd/src -f posix.mak clean
 
 dmd:
@@ -63,4 +65,7 @@ phobos64: druntime64
 	$(MAKE) -C phobos -f posix.mak DMD=../dmd/src/dmd MODEL=64
 
 test: phobos
+	$(MAKE) -C druntime -f posix.mak unittest
+	$(MAKE) -C phobos -f posix.mak unittest
 	$(MAKE) -C dmd/test
+
