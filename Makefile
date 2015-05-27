@@ -13,7 +13,7 @@ push:
 tag:
 	-git -C dmd tag "$(TAG)"
 	-git -C druntime tag "$(TAG)"
-	-git -C phobos tqg "$(TAG)"
+	-git -C phobos tag "$(TAG)"
 	-git -C dlang.org tag "$(TAG)"
 	git commit -m"Added $(TAG)" -- dmd druntime phobos dlang.org
 	git tag -f "$(TAG)"
