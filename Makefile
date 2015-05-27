@@ -1,8 +1,14 @@
 .PHONY: dmd phobos druntime test ddmd ddmd32 ddmd64 \
 	phobos32 phobos64 druntime32 druntime64 \
-	all clean fetch sync checkout tag
+	all clean fetch sync checkout tag push
 
 all: phobos
+
+push:
+	git -C dmd push --set-upstream origin master
+	git -C dlang.org push --set-upstream origin master
+	git -C druntime push --set-upstream origin master
+	git -C phobos push --set-upstream origin master
 
 tag:
 	-git -C dmd tag "$(TAG)"
