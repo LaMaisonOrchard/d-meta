@@ -1,12 +1,12 @@
 [submodule "dmd"]
 	path = dmd
-	url = git@github.com:lionello/dmd.git
+	url = https://github.com/dlang/dmd.git
 [submodule "phobos"]
 	path = phobos
-	url = git@github.com:lionello/phobos.git
+	url = https://github.com/dlang/phobos.git
 [submodule "druntime"]
 	path = druntime
-	url = git@github.com:lionello/druntime.git
+	url = https://github.com/dlang/druntime.git
 [submodule "dlang.org"]
 	path = dlang.org
-	url = git@github.com:lionello/dlang.org.git
+	url = https://github.com/dlang/dlang.org.git
